@@ -41,6 +41,7 @@ public class DepartmentController {
         /*Page<DepartmentDTO> departmentDTOList=departmentMapper.departmentListToDepartmentDTOList(
                 departmentList);*/
         String msg="All the department records are found";
+        String hello="hi pillalu";
 
         return ResponseBuilder.getSuccessResponse(departmentList,msg);
 

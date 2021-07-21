@@ -45,6 +45,17 @@ public class EmployeeController {
         return ResponseBuilder.getSuccessResponse(employeeDTO,message);
 
     }
+    @GetMapping("/employee")
+    @ResponseBody
+    public ResponseEntity getEmployeeByEmail(@RequestParam  String email)
+    {
+        Employee employee=employeeService.getEmployeeByEmail(email);
+        EmployeeDTO employeeDTO=employeeMapper.employeeToEmployeeDTO(employee);
+        String message="Employee with email: "+email+" has been returned";
+        return ResponseBuilder.getSuccessResponse(employeeDTO,message);
+
+    }
+
 
     @DeleteMapping("/employee/{id}")
     @ResponseBody

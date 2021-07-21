@@ -24,6 +24,9 @@ public class EmployeeService {
       return employeeRepositoryService.getEmployeeById(id);
     }
 
+    public Employee getEmployeeByEmail(String email){
+        return employeeRepositoryService.getEmployeeByEmail(email);
+    }
     public String createEmployee(Employee emp)
     {
         try{
@@ -45,4 +48,5 @@ public class EmployeeService {
     public Employee getNewlyAddedEmployee(){
         return employeeRepositoryService.getNewlyAddedEmployee();
     }
+
 }
