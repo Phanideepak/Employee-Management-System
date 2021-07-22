@@ -42,10 +42,7 @@ public class DepartmentController {
                 departmentList);*/
         String msg="All the department records are found";
 
-
         return ResponseBuilder.getSuccessResponse(departmentList,msg);
-
-
     }
 
     @GetMapping("/department/{id}")
@@ -64,6 +61,7 @@ public class DepartmentController {
                                               @RequestHeader("username") String username)
     {
         String responseMsg=departmentService.addNewDepartment(deptName,username);
+
         if(responseMsg=="success"){
             Department newDept=departmentService.getNewlyAddedDepartment();
             String msg="Department with id: "+newDept.getId()+" is created";

@@ -93,6 +93,7 @@ public class EmployeeRepositoryService {
        List<Employee> employeeList=employeeRepository.findAll(Sort.by(Sort.Direction.DESC,"createdAt"));
        return employeeList.get(0);
    }
+
    public Employee getEmployeeByEmail(String email){
        return employeeRepository
                .findOneByEmail(email).orElseThrow(()->new ServiceException("employee with email="+email+" not found"));

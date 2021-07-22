@@ -21,10 +21,12 @@ public class DepartmentRepositoryService {
     {
 
         if(getAllDepartmentNames().indexOf(department.getDeptName().toLowerCase())>0) {
-            //throw new ServiceException("Insertion Error! Duplicate Department not allowed","Insert");
-            return "Insertion Error! Duplicate Department not allowed Insert ";
+            System.out.println("hello");
+            throw new ServiceException("Insertion Error! Duplicate Department not allowed","Insert");
+            //return "Insertion Error! Duplicate Department not allowed Insert ";
         }
         departmentRepository.save(department);
+        System.out.println("Hello");
         return "success";
     }
 
