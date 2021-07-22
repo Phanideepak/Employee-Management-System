@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+
 import java.util.Date;
 
 @Entity
@@ -22,6 +24,7 @@ public class Employee {
 
     @Column(name="last_name")
     private String lastName;
+
 
     private String email;
 

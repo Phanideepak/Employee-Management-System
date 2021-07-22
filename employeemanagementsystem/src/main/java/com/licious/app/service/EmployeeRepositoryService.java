@@ -41,7 +41,7 @@ public class EmployeeRepositoryService {
 
    }
 
-   public String updateEmployee(int id,Employee employee){
+   public String updateEmployee(int id,Employee employee, String username){
        Employee existedEmployee=employeeRepository.findById(id)
                .orElseThrow(()->new ServiceException("employee",id));
 
@@ -52,8 +52,8 @@ public class EmployeeRepositoryService {
        existedEmployee.setDob(employee.getDob());
        existedEmployee.setJob(employee.getJob());
        existedEmployee.setJoiningDate(employee.getJoiningDate());
-       existedEmployee.setCreatedBy(employee.getCreatedBy());
-       existedEmployee.setLastUpdatedBy(employee.getLastUpdatedBy());
+       //existedEmployee.setCreatedBy(employee.getCreatedBy());
+       existedEmployee.setLastUpdatedBy(username);
        existedEmployee.setSalary(employee.getSalary());
        //existedEmployee.setDepartmentId(employee.getDepartmentId());
        existedEmployee.setLastUpdatedDate(new Date());
@@ -94,6 +94,7 @@ public class EmployeeRepositoryService {
        return employeeList.get(0);
    }
    public Employee getEmployeeByEmail(String email){
-       return employeeRepository.findOneByEmail(email).get();
+       return employeeRepository
+               .findOneByEmail(email).orElseThrow(()->new ServiceException("employee with email="+email+" not found"));
    }
 }

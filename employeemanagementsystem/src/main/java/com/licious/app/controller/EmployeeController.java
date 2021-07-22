@@ -83,13 +83,11 @@ public class EmployeeController {
 
     @PutMapping(value="/employee",consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity updateEmployee(@RequestBody Employee employee, @RequestParam int id
-    )
-    {
-       String responseMsg=employeeService.editEmployee(employee,id);
+    public ResponseEntity updateEmployee(@RequestBody Employee employee, @RequestParam int id,
+    @RequestHeader("username") String username) {
+       String responseMsg=employeeService.editEmployee(employee,id,username);
        EmployeeDTO employeeDTO=employeeMapper.
             employeeToEmployeeDTO(employeeService.getEmployeeById(id));
         return ResponseBuilder.getSuccessResponse(employeeDTO,responseMsg);
-
     }
 }

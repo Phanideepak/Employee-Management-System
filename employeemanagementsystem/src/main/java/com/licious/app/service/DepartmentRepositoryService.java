@@ -20,10 +20,9 @@ public class DepartmentRepositoryService {
     public String createNewDepartment(Department department)
     {
 
-        department.setCreatedAt(new Date());
-        department.setLastUpdatedDate(new Date());
         if(getAllDepartmentNames().indexOf(department.getDeptName().toLowerCase())>0) {
-            throw new ServiceException("Insertion Error! Duplicate Department not allowed","Insert");
+            //throw new ServiceException("Insertion Error! Duplicate Department not allowed","Insert");
+            return "Insertion Error! Duplicate Department not allowed Insert ";
         }
         departmentRepository.save(department);
         return "success";

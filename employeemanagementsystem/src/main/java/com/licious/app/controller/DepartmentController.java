@@ -41,7 +41,7 @@ public class DepartmentController {
         /*Page<DepartmentDTO> departmentDTOList=departmentMapper.departmentListToDepartmentDTOList(
                 departmentList);*/
         String msg="All the department records are found";
-        String hello="hi pillalu";
+
 
         return ResponseBuilder.getSuccessResponse(departmentList,msg);
 
@@ -58,11 +58,12 @@ public class DepartmentController {
         return ResponseBuilder.getSuccessResponse(existingDepartmentDTO,msg);
     }
 
-    @PostMapping(value="/department/new",consumes= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/department/new")
     @ResponseBody
-    public ResponseEntity<?> addNewDepartment(@RequestBody Department newDepartment)
+    public ResponseEntity<?> addNewDepartment(@RequestParam String deptName,
+                                              @RequestHeader("username") String username)
     {
-        String responseMsg=departmentService.addNewDepartment(newDepartment);
+        String responseMsg=departmentService.addNewDepartment(deptName,username);
         if(responseMsg=="success"){
             Department newDept=departmentService.getNewlyAddedDepartment();
             String msg="Department with id: "+newDept.getId()+" is created";
@@ -75,12 +76,12 @@ public class DepartmentController {
     }
 
 
-    @PutMapping(value="/department",consumes=MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value="/department")
     @ResponseBody
-    public ResponseEntity<?> updateDepartment(@RequestBody Department department,@RequestParam int id,
+    public ResponseEntity<?> updateDepartment(@RequestParam String deptName,@RequestParam int id,
                                    @RequestHeader("username") String username)
     {
-          String responseMsg=departmentService.updateDepartment(department.getDeptName(),id,username);
+          String responseMsg=departmentService.updateDepartment(deptName,id,username);
           Department dept=(departmentService.getDepartmentById(id));
           return ResponseBuilder.getSuccessResponse(dept,responseMsg);
     }

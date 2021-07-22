@@ -36,9 +36,9 @@ public class EmployeeService {
         }
     }
 
-    public String editEmployee(Employee emp,int id)
+    public String editEmployee(Employee emp,int id, String username)
     {
-        return employeeRepositoryService.updateEmployee(id,emp);
+        return employeeRepositoryService.updateEmployee(id,emp,username);
     }
     public String deleteEmployee(int id)
     {

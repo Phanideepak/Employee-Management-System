@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -35,10 +36,17 @@ public class DepartmentService {
         return departmentRepositoryService.getAllDepartments(pageable);
     }
 
-    public String addNewDepartment(Department dept)
+    public String addNewDepartment(String deptName,String username)
     {
         try
         {
+            Department dept=new Department();
+            dept.setDeptName(deptName);
+            dept.setCreatedAt(new Date());
+            dept.setLastUpdatedBy(username);
+            dept.setCreatedBy(username);
+            dept.setLastUpdatedDate(new Date());
+
             return departmentRepositoryService.createNewDepartment(dept);
         }catch (Exception e)
         {
